@@ -1,0 +1,25 @@
+.App{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+/* .flex{
+    display: flex;
+    color:blue;
+} */
+
+.questionInfo{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    background-color: blueviolet;
+    width: 100vh;
+}
+
+.points{
+    color: red;
+}
