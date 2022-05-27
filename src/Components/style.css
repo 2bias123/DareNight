@@ -1,25 +1,31 @@
 .App{
     display: flex;
     justify-content: center;
-    text-align: center;
-    
+    text-align: center;   
+    width: 100%;
 }
 
-/* .flex{
-    display: flex;
-    color:blue;
-} */
+.DareNight{
+    width: 100%;
 
+}
 .questionInfo{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
     text-align: center;
-    justify-content: space-between;
-    background-color: blueviolet;
-    width: 100vh;
+    justify-content:space-around;
+    
 }
 
 .points{
     color: red;
+    background-color: aliceblue;
+}
+
+.checkbox{
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
 }
