@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from 'react';
 import './questionsDatabase'
+import { comtor } from './questionsPage';
 
 export default function QuestionsList({QuestionDatabase}){
     return(
@@ -9,8 +10,7 @@ export default function QuestionsList({QuestionDatabase}){
     )
 }
 
-function item(data,preferedDificulty){
-    if(data.dificulty == preferedDificulty){
+function item(data){
     return(
         <>
         {
@@ -20,12 +20,12 @@ function item(data,preferedDificulty){
                         <h3 className="questionDificulty">{value.dificulty}</h3>
                         <h3 className="mainQuestion">{value.question_text}</h3>
                         <h3 className="points">{value.points}</h3>
-                        <input className= "checkbox" type='checkbox'></input>
+                        <input onChange={comtor} className= "checkbox" type='checkbox' ></input>
                     </div>
                 </div>
             ))
         }
         </>
     )
-}
+
 }
