@@ -1,7 +1,8 @@
 import react,{useEffect,useState,setState} from 'react'
 import { questionsDatabase } from './questionsDatabase'
 
-
+//Next step should be that the counter decrease each time you uncheck a checkbox and increase if it is checked again
+//Then add the points of questions not just one point each time
 export default function Questions({Data}){
     const [count, setCount] = useState(0);
     return(
