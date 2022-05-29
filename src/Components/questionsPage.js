@@ -1,22 +1,36 @@
-import react,{useEffect,useState,setState} from 'react'
-import { questionsDatabase } from './questionsDatabase'
+import { useState } from "react"
+import { questionsDatabase } from "./questionsDatabase"
 
-//Next step should be that the counter decrease each time you uncheck a checkbox and increase if it is checked again
-//Then add the points of questions not just one point each time
 export default function Questions({Data}){
+    // array that keeps track of checkbox state 
+    const [checked, setChecked] = useState(
+        new Array(questionsDatabase.length).fill(false)
+        )
+    
+    // points count
     const [count, setCount] = useState(0)
-    //All the checkboxes uses this state so that creates some bugs
-    const [checked, setChecked] = useState(false)
-    // const HandleCheck = ({Data}) =>{
-    //     // const [checked, setChecked] = useState(false)
-    //     if(!checked){
-    //         setCount(count + Data)
-    //         } else if(checked){
-    //             setCount(count- Data)
-    //         }   
-    //         setChecked(!checked)
-    //         console.log(checked)
-    // }
+
+    // function called when the state of the check boxes changes
+    const handleOnChange = (position) => {
+        //loop over the array with boolean values and reverse the value corresponding to the given index
+        const updatedChecked = checked.map((item, index) =>
+        index === position ? !item : item
+        )
+
+        setChecked(updatedChecked)
+
+        const totalPoints = updatedChecked.reduce(
+            (sum, currentState, index) => {
+                if (currentState === true) {
+                    return sum + questionsDatabase[index].points
+                }
+                return sum
+            },
+            0
+        )
+
+        setCount(totalPoints)
+    }
 
     return(        
         <div className='DareNight'>
@@ -24,21 +38,16 @@ export default function Questions({Data}){
             <h2 className='scoreCounter'>{count}</h2>
             <div id='questionList'>
             {
-            Data.map((value,index)=>(         
+            Data.map(( value, index ) => (         
                 <div className="flex" key = {index}>
                     <div className="questionInfo">
                         <h3 className="questionDificulty">{value.dificulty}</h3>
                         <h3 className="mainQuestion">{value.question_text}</h3>
                         <h3 className="points">{value.points}</h3>
-                        <input onChange={()=>{
-                            if(!checked){
-                            setCount(count + value.points)
-                            } else if(checked){
-                                setCount(count-value.points)
-                            }
-                            setChecked(!checked)
-                            console.log(checked)
-                        }} className= "checkbox" type='checkbox'></input>
+                        <input 
+                            checked={checked[index]}
+                            onChange={() => handleOnChange(index)} 
+                            className= "checkbox" type='checkbox'></input>
                     </div>
                 </div>
             ))
