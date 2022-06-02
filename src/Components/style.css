@@ -6,26 +6,43 @@
 }
 
 .DareNight{
-    width: 100%;
-
+    width: 90%;
+    font-family: 'Quicksand';   
 }
+
+.DareNightHeader{
+    font-size: 60px;
+    color: darkred;
+}
+
+.scoreCounter{
+    font-size: 40px;
+    color: red;
+}
+
 .questionInfo{
     display: flex;
     flex-direction: row;
     align-items: center;
-    text-align: center;
-    justify-content:space-around;
-    
+    justify-content: space-around;
+}
+
+.questionDificulty{
+    display: flex;
+    width: 75px;
+}
+
+.mainQuestion{
+    width: 200px;
 }
 
 .points{
-    color: rgb(34, 0, 255);
-    background-color: aliceblue;
+    color: rgb(255, 3, 3);
+    width: 20px;
+    font-size: 21px;
 }
 
 .checkbox{
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
+    height: 20px;
+    width: 20px;
 }
