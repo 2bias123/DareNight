@@ -39,10 +39,12 @@ export default function Questions({Data,UserName}){
         <div className='DareNight'>
             <h1 className='DareNightHeader'>Dare Night</h1>
             <h2 className='scoreCounter'>{count}</h2>
+            <br></br>
+            <br></br>
             <div id='questionList'>
             {
             Data.map(( value, index ) => (         
-                <div className="flex" key = {index}>
+                <div className="flex">
                     <div className="questionInfo">
                         <h3 className="questionDificulty">{value.dificulty}</h3>
                         <h3 className="mainQuestion">{value.question_text}</h3>
@@ -50,7 +52,7 @@ export default function Questions({Data,UserName}){
                         <input 
                             checked={checked[index]}
                             onChange={() => handleOnChange(index)} 
-                            className= "checkbox" type='checkbox'></input>
+                            className= "checkbox" type='checkbox'/>
                     </div>
                 </div>
             ))
