@@ -31,6 +31,9 @@ export default function Questions({Data,UserName}){
         )
         setCount(totalPoints)
     }
+    /**
+     * When the score count is changed it updates the score in the database for the user that is logged in
+     */
     // useEffect(()=>{db.collection('Users').doc(UserName).set({score:count})},[count])
     return(        
         <div className='DareNight'>

@@ -11,8 +11,8 @@ function App() {
     return (
       <div className="App" id='main'>
         {/* <LogIn></LogIn> */}
-        <InsertQuestion></InsertQuestion>
-        {/* <Questions Data={questionsDatabase}></Questions> */}
+        {/* <InsertQuestion></InsertQuestion> */}
+        <Questions Data={questionsDatabase}></Questions>
       </div>
   )
   }

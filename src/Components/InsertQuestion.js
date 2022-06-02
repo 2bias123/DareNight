@@ -15,6 +15,10 @@ export default function InsertQuestion(){
         Points : QstPoints
     }
 
+    /**
+     * Takes the values inserted by the user and inserts into the firestore database, 
+     * and then resets the values
+     */
     const handleSubmit = () => {
         db.collection('Questions').doc(QstId).set(Qst)
         document.getElementById('id').value = ''
@@ -22,10 +26,6 @@ export default function InsertQuestion(){
         document.getElementById('Desc').value = ''
         document.getElementById('Points').value = null
 
-    }
-
-    const putIn = () => {
-        db.collection('Questions').doc(QstId).set(questionsDatabase[0])
     }
 
     return(
