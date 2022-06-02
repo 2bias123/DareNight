@@ -5,7 +5,10 @@ import { validUsers } from "./Databases/validUsers";
 
    
 export default function LogIn(){
+
     const [usrnm,setUsernm] = useState('')
+
+    //Checks if iserted username is in a list of valid usernames if it is it returns the website
     if(validUsers.includes(usrnm)){
         return(
             <Questions Data = {questionsDatabase} UserName ={usrnm}/>

@@ -1,5 +1,6 @@
 import db from "./firebase"
 import React, { useState, useEffect} from "react"
+import { questionsDatabase } from "./Databases/questionsDatabase"
 
 
 export default function InsertQuestion(){
@@ -21,6 +22,10 @@ export default function InsertQuestion(){
         document.getElementById('Desc').value = ''
         document.getElementById('Points').value = null
 
+    }
+
+    const putIn = () => {
+        db.collection('Questions').doc(QstId).set(questionsDatabase[0])
     }
 
     return(

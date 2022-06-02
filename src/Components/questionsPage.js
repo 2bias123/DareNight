@@ -3,9 +3,9 @@ import { questionsDatabase } from "./Databases/questionsDatabase"
 import db from "./firebase";
    
 export default function Questions({Data,UserName}){
-       // array that keeps track of checkbox state 
+    // array that keeps track of checkbox state 
     const [checked, setChecked] = useState(
-        new Array(questionsDatabase.length).fill(false)
+        new Array(Data.length).fill(false)
         )
     
     // points count
@@ -23,18 +23,15 @@ export default function Questions({Data,UserName}){
         const totalPoints = updatedChecked.reduce(
             (sum, currentState, index) => {
                 if (currentState === true) {
-                    return sum + questionsDatabase[index].points
+                    return sum + Data[index].points
                 }
                 return sum
             },
             0
         )
-        
         setCount(totalPoints)
     }
-
-    useEffect(()=>{db.collection('Users').doc(UserName).set({score:count})},[count])
-
+    // useEffect(()=>{db.collection('Users').doc(UserName).set({score:count})},[count])
     return(        
         <div className='DareNight'>
             <h1 className='DareNightHeader'>Dare Night</h1>
