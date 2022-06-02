@@ -1,8 +1,9 @@
-import { useState } from "react"
-import { questionsDatabase } from "./questionsDatabase"
-
-export default function Questions({Data}){
-    // array that keeps track of checkbox state 
+import React, { useState, useEffect} from "react"
+import { questionsDatabase } from "./Databases/questionsDatabase"
+import db from "./firebase";
+   
+export default function Questions({Data,UserName}){
+       // array that keeps track of checkbox state 
     const [checked, setChecked] = useState(
         new Array(questionsDatabase.length).fill(false)
         )
@@ -28,9 +29,11 @@ export default function Questions({Data}){
             },
             0
         )
-
+        
         setCount(totalPoints)
     }
+
+    useEffect(()=>{db.collection('Users').doc(UserName).set({score:count})},[count])
 
     return(        
         <div className='DareNight'>

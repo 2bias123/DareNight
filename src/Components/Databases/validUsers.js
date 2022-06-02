@@ -1,0 +1,1 @@
+export const validUsers = ['User1','User2']
