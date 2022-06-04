@@ -13,6 +13,7 @@ function App() {
         {/* <LogIn></LogIn> */}
         {/* <InsertQuestion></InsertQuestion> */}
         <Questions Data={questionsDatabase}></Questions>
+        <img src='/images/DareNightLogo.jpeg' alt=''/>
       </div>
   )
   }
