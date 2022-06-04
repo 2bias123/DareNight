@@ -17,7 +17,7 @@ export default function LogIn(){
     return(
         <div>
             <br></br>
-            <img src='\favicon.ico' alt=''/>
+            <img src='\DareNightLogo.jpeg' alt=''/>
             <br></br>
             <h3>INNLOGGING</h3>
             <input type={'text'} placeholder={'Brukernavn'} onChange={(e)=>setUsernm(e.target.value)} />
