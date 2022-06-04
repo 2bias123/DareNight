@@ -10,9 +10,9 @@ import './Components/style.css'
 function App() {
     return (
       <div className="App" id='main'>
-        {/* <LogIn></LogIn> */}
+        <LogIn></LogIn>
         {/* <InsertQuestion></InsertQuestion> */}
-        <Questions Data={questionsDatabase}></Questions>
+        {/* <Questions Data={questionsDatabase}></Questions> */}
       </div>
   )
   }

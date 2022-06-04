@@ -1,1 +1,1 @@
-export const validUsers = ['User1','User2']
+export const validUsers = ['Rip Harambe','Team God S']
