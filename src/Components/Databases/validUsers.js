@@ -1,1 +1,1 @@
-export const validUsers = ['Rip Harambe','Team God S']
+export const validUsers = ['Rip Harambe','Team God S','MTG Bois','Fab four','Smårips']
