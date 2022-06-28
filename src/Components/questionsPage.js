@@ -1,13 +1,28 @@
 import React, { useState, useEffect} from "react"
+import Buttons from "./Buttons";
 import { questionsDatabase } from "./Databases/questionsDatabase"
 import db from "./firebase";
    
 export default function Questions({Data,UserName}){
+    //Hook that determines what is displayed
+    const[questions,setQuestions] = useState(Data)
+    
     // array that keeps track of checkbox state 
     const [checked, setChecked] = useState(
         new Array(Data.length).fill(false)
         )
     
+    //Makes a set with the diffrent difficulties
+    const diff = [...new Set(Data.map((val)=>val.dificulty))]
+
+    //Function that filters out questions based on difficulty
+    const filterQuestions = (filterValue) => {
+        const newQuestions = Data.filter((newVal) => {
+          return newVal.dificulty === filterValue;
+        });
+        setQuestions(newQuestions);
+      };
+
     // points count
     const [count, setCount] = useState(0)
 
@@ -41,9 +56,10 @@ export default function Questions({Data,UserName}){
             <h2 className='scoreCounter'>{count}</h2>
             <br></br>
             <br></br>
+            <Buttons filterQuestions = {filterQuestions} diff={diff} setQuestions={setQuestions} Data={Data}></Buttons>
             <div id='questionList'>
             {
-            Data.map(( value, index ) => (         
+            questions.map(( value, index ) => (         
                 <div className="flex">
                     <div className="questionInfo">
                         <h3 className="questionDificulty">{value.dificulty}</h3>

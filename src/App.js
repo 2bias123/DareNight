@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { questionsDatabase } from './Components/Databases/questionsDatabase';
 import Qst from './Components/getFire';
 import InsertQuestion from './Components/InsertQuestion';
@@ -13,8 +13,8 @@ function App() {
       <div className="App" id='main'>
         {/* <LogIn></LogIn> */}
         {/* <InsertQuestion></InsertQuestion> */}
-        {/* <Questions Data={questionsDatabase}></Questions> */}
-        <Register></Register>
+        <Questions Data={questionsDatabase} ></Questions>
+        {/* <Register></Register> */}
       </div>
   )
   }
