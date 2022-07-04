@@ -49,7 +49,7 @@ export default function Questions({Data,UserName}){
     /**
      * When the score count is changed it updates the score in the database for the user that is logged in
      */
-    useEffect(()=>{db.collection('Users').doc(UserName).set({score:count})},[count])
+    // useEffect(()=>{db.collection('Users').doc(UserName).set({score:count})},[count])
     return(        
         <div className='DareNight'>
             <h1 className='DareNightHeader'>Dare Night</h1>
