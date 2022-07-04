@@ -20,7 +20,8 @@ import {
 
 function App() {
     return (
-      <div className="App" id='main'>
+      <div className="App " id='main'>
+
         {/* This defines what component to display when the diffrent links are clicked */}
         <Router>
           <Routes>
