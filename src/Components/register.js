@@ -65,6 +65,9 @@ export default function Register(){
                 <Link to={'/questionsPage'}>
                 <button className="loginButton googleLogIn" >See questions</button>
                 </Link>
+                <Link to={'/insertquestion'}>
+                    <button className="loginButton">Insert question</button>
+                </Link>
                 <span>Already have an account? <Link to="/login">Sign in</Link></span>
             </div>
             </form>

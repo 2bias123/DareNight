@@ -28,7 +28,8 @@ function App() {
             <Route path='/' element={<Register/>}/>
             <Route path='/login' element={<LogIn/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/questionsPage' element={<Questions Data={questionsDatabase}/>}/>
+            <Route path='/questionsPage' element={<Questions Data={Qst()}/>}/>
+            <Route path='/insertquestion' element={<InsertQuestion/>}/>
           </Routes>
         </Router>
       </div>

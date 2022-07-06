@@ -32,6 +32,5 @@ export default function Qst(){
         getQuestions()
     },[])
 
-    // console.log(questions)
     return questions
 }   
