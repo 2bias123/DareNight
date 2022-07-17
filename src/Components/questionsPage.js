@@ -3,7 +3,7 @@ import Buttons from "./Buttons";
 import { questionsDatabase } from "./Databases/questionsDatabase"
 import db from "./firebase";
 import { doc, updateDoc, onSnapshot} from "firebase/firestore"
-import Score from "./getscore";
+import { Link } from "react-router-dom";
 
    
 export default function Questions({Data,UserName}){
@@ -41,7 +41,9 @@ export default function Questions({Data,UserName}){
 
     return(
         <div className='DareNight'>
-            <h1 className='DareNightHeader'>Dare Night</h1>
+            <Link to={"/"}>
+                <button className="DareNightHeader">Dare Night</button>
+            </Link>
             <h2 className='scoreCounter'>{score}</h2>
             <br></br>
             <br></br>

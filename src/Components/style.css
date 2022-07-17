@@ -10,9 +10,16 @@
     font-family: 'Quicksand';   
 }
 
+.DareNight button{
+    font-family: 'Quicksand';
+}
+
 .DareNightHeader{
     font-size: 60px;
     color: darkred;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 .scoreCounter{
