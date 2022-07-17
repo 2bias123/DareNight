@@ -5,9 +5,9 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
    
-export default function Qst(){
+export default function Qst(collection){
     //This gets the wanted collection from firestore
-    const ref = firebase.firestore().collection('Questions')
+    const ref = firebase.firestore().collection(collection)
 
     const [questions,setQuestions] = useState([])
     
@@ -32,5 +32,6 @@ export default function Qst(){
         getQuestions()
     },[])
 
+    
     return questions
 }   

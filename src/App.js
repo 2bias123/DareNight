@@ -14,6 +14,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import AdminPage from './Components/adminPage';
   
 
 
@@ -25,10 +26,10 @@ function App() {
         {/* This defines what component to display when the diffrent links are clicked */}
         <Router>
           <Routes>
-            <Route path='/' element={<Register/>}/>
+            <Route path='/' element={<AdminPage/>}/>
             <Route path='/login' element={<LogIn/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/questionsPage' element={<Questions Data={Qst()}/>}/>
+            <Route path='/questionsPage' element={<Questions Data={Qst('Questions')}/>}/>
             <Route path='/insertquestion' element={<InsertQuestion/>}/>
           </Routes>
         </Router>

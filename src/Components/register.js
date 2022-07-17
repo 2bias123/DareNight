@@ -37,6 +37,7 @@ export default function Register(){
 
     return(
         <div className="logIn">
+            <h1>Dare Night</h1>
             <form onSubmit={registerUsr}>
             <div className="loginBox">
                 <input 
