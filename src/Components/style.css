@@ -3,28 +3,49 @@
     justify-content: center;
     text-align: center;   
     width: 100%;
+    background-color: #161616;
+    flex-grow: 1;
+    min-height: 100vh;
+    font-family: 'BioRhyne';   
+
+}
+
+.App h1{
+    color: #ff0505;
+    font-family: 'BioRhyne';   
+    font-size: 100px;
+    font-weight: normal;
 }
 
 .DareNight{
     width: 90%;
-    font-family: 'Quicksand';   
+    font-family: 'BioRhyne';   
 }
 
-.DareNight button{
-    font-family: 'Quicksand';
-}
-
-.DareNightHeader{
-    font-size: 60px;
-    color: darkred;
+.header{
+    color: #ff0505;
+    font-family: 'BioRhyne';  
     padding: 0;
     border: none;
-    background: none;
+    background: none; 
+    font-size: 100px;
 }
+
+.DareNight .underheader{
+    color: #c4c4c4;
+    font-family: 'BioRhyne';  
+    padding: 0;
+    border: none;
+    background: none; 
+    font-size: 50px;
+    text-align: center;
+    padding: 30px;
+}
+
 
 .scoreCounter{
     font-size: 40px;
-    color: red;
+    color: #ff0505;
 }
 
 .questionInfo{
@@ -32,6 +53,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    color:#c4c4c4
+
 }
 
 .questionDificulty{
@@ -44,12 +67,13 @@
 }
 
 .points{
-    color: rgb(255, 3, 3);
+    /* color: #ff0505; */
     width: 20px;
     font-size: 21px;
 }
 
 .checkbox{
+    accent-color: #ff0505;
     height: 20px;
     width: 20px;
 }
@@ -62,7 +86,6 @@ img {
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: #dcdcdc;
     padding: 30px;
   }
   .loginTextBox {
@@ -75,8 +98,9 @@ img {
     font-size: 18px;
     margin-bottom: 10px;
     border: none;
-    color: white;
-    background-color: black;
+    color: #ff0505;
+    background-color:#c4c4c4;
+
   }
   .googleLogIn {
     background-color: #4285f4;

@@ -1,7 +1,7 @@
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
 import React, { useEffect, useState } from "react"
 import { Link, Route, BrowserRouter as Router, useNavigate } from "react-router-dom"
-import auth from "./firebase.js"
+import {auth} from "./firebase.js"
   
 export default function Register(){
 
@@ -23,22 +23,27 @@ export default function Register(){
         return isValid
     }
 
-    const registerUsr = (e)=>{
-        if(passwordValidate()){
-            createUserWithEmailAndPassword(auth,email,password).then((res)=>{
-                console.log(res.user)
-            })
-            .catch(err => setError(err.message))
-        }
-        setEmail('')
-        setPassword('')
-        setConfirmedPassword('')
+    const auth = getAuth()
+    const registerUsr = ()=>{
+        // e.preventDefault()
+        // if(passwordValidate()){
+            createUserWithEmailAndPassword(auth,email,confirmPassword)
+            // .then((userCredential)=>{
+            //     const user = userCredential.user
+            //     console.log(userCredential)
+            // })
+            // .catch(err => setError(err.message))
+        // }
+        // setEmail('')
+        // setPassword('')
+        // setConfirmedPassword('')
     }
-
     return(
-        <div className="logIn">
-            <h1>Dare Night</h1>
-            <form onSubmit={registerUsr}>
+        <div className="logIn"> 
+        <Link to={"/"}>
+        <button className="header">DARE NIGHT</button>
+        </Link>
+            <form onSubmit={()=>registerUsr()}>
             <div className="loginBox">
                 <input 
                 type={'text'} 
@@ -58,17 +63,10 @@ export default function Register(){
                 type={'password'} 
                 className='loginTextBox' 
                 value={confirmPassword} 
-                onChange={(e)=>setConfirmedPassword(e.target.value)} 
+                onChange={(e)=>{setConfirmedPassword(e.target.value)}}
                 placeholder='Confirm Password'/>
                 
                 <button className="loginButton">Register</button>
-
-                <Link to={'/questionsPage'}>
-                <button className="loginButton googleLogIn" >See questions</button>
-                </Link>
-                <Link to={'/insertquestion'}>
-                    <button className="loginButton">Insert question</button>
-                </Link>
                 <span>Already have an account? <Link to="/login">Sign in</Link></span>
             </div>
             </form>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react"
 import Buttons from "./Buttons";
 import { questionsDatabase } from "./Databases/questionsDatabase"
-import db from "./firebase";
+import {db} from "./firebase";
 import { doc, updateDoc, onSnapshot} from "firebase/firestore"
 import { Link } from "react-router-dom";
 
@@ -42,12 +42,12 @@ export default function Questions({Data,UserName}){
     return(
         <div className='DareNight'>
             <Link to={"/"}>
-                <button className="DareNightHeader">Dare Night</button>
+                <button className="header">DARE NIGHT</button>
             </Link>
             <h2 className='scoreCounter'>{score}</h2>
             <br></br>
             <br></br>
-            <Buttons filterQuestions = {filterQuestions} diff={diff} setQuestions={setQuestions} Data={Data}></Buttons>
+            {/* <Buttons filterQuestions = {filterQuestions} diff={diff} setQuestions={setQuestions} Data={Data}></Buttons> */}
             <div id='questionList'>
             {
             Data.map(

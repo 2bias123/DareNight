@@ -15,6 +15,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import AdminPage from './Components/adminPage';
+import HomeScreen from './Components/homescreen';
   
 
 
@@ -22,11 +23,11 @@ import AdminPage from './Components/adminPage';
 function App() {
     return (
       <div className="App " id='main'>
-
         {/* This defines what component to display when the diffrent links are clicked */}
         <Router>
           <Routes>
-            <Route path='/' element={<AdminPage/>}/>
+            <Route path='/' element={<HomeScreen/>}/>
+            <Route path='AdminPage' element={<AdminPage/>}/>
             <Route path='/login' element={<LogIn/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/questionsPage' element={<Questions Data={Qst('Questions')}/>}/>

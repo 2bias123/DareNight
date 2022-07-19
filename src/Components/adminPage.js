@@ -6,16 +6,18 @@ import auth from "./firebase.js"
 export default function AdminPage(){
 
     return(
-        <div className="logIn">
-            <h1>Dare Night</h1>
-            <div className="loginBox">
+        <div className="DareNight">
+            <Link to={"/"}>
+                <button className="header">DARE NIGHT</button>
+            </Link>
+            <br/>
                 <Link to={'/questionsPage'}>
-                <button className="loginButton googleLogIn" >See questions</button>
+                <button className="underheader" >see questions</button>
                 </Link>
+                <br/>
                 <Link to={'/insertquestion'}>
-                    <button className="loginButton">Insert question</button>
+                    <button className="underheader">insert question</button>
                 </Link>
-            </div>
         </div>
     )
 }   

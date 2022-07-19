@@ -1,4 +1,4 @@
-import db from "./firebase"
+import {db} from "./firebase"
 import React, { useState, useEffect} from "react"
 import { questionsDatabase } from "./Databases/questionsDatabase"
 import { doc, setDoc } from "firebase/firestore"; 
@@ -33,9 +33,13 @@ export default function InsertQuestion(){
     return(
         <div>
             <input type={'text'} id={'id'} placeholder={'Question id'} onChange={(e)=>setId(e.target.value)}/>
+            <br/>
             <input type={'text'} id={'dificulty'} placeholder={'Difficulty'} onChange={(e)=>setDifficulty(e.target.value)}/>
+            <br/>
             <input type={'text'} id={'question_text'} placeholder={'Discription'} onChange={(e)=>setTxt(e.target.value)}/>
+            <br/>
             <input type={'number'} id={'points'} placeholder={'points'} onChange={(e)=>{setPoints(Number(e.target.value))}}/>
+            <br/>
             <input type={'button'} onClick={()=>handleSubmit()}/>
         </div>
     )

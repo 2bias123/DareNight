@@ -8,6 +8,9 @@ export default function LogIn(){
 
     return(
         <div className="logIn">
+             <Link to={"/"}>
+                <button className="header">DARE NIGHT</button>
+            </Link>
             <div className="loginBox">
                 <input 
                 type={'text'} 
