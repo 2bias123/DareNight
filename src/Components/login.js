@@ -1,23 +1,41 @@
+import { doc, getDoc } from "firebase/firestore"
 import React, { useEffect, useState } from "react"
-import { Link, Route, Router, useNavigate } from "react-router-dom"
+import { Link, Navigate, Route, Router, useNavigate } from "react-router-dom"
+import { db } from "./firebase"
+import Header from "./Header.js"
   
 export default function LogIn(){
 
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
 
+
+    const navigate = useNavigate()
+
+    
+    async function login() {
+        // const userInfo = doc(db,"Users",email)
+        // const docSnap = await getDoc(userInfo)
+        // if(docSnap.exists()){
+        //     console.log(docSnap.data())
+        //     navigate("/questionspage")
+        // }else{
+        //     console.log("denne finnes ikke")
+        // }
+    }
+
     return(
         <div className="logIn">
-             <Link to={"/"}>
-                <button className="header">DARE NIGHT</button>
-            </Link>
-            <div className="loginBox">
+            <Header/>
+                <form onSubmit={()=>login()}>
+                <div className="loginBox">
+
                 <input 
                 type={'text'} 
                 className='loginTextBox' 
                 value={email} 
                 onChange={(e)=>setEmail(e.target.value)} 
-                placeholder='Email Address'/>
+                placeholder='Username'/>
 
                 <input 
                 type={'password'} 
@@ -26,10 +44,11 @@ export default function LogIn(){
                 onChange={(e)=>setPassword(e.target.value)} 
                 placeholder='Password'/>
 
-                <button className="loginButton">Login</button>
-                <button className="loginButton googleLogIn" >Login with Google</button>
+                <button type="button" className="loginButton" onClick={()=>login()}>Login</button>
                 <span>Don't have an account? <Link to={'/register'}>Register</Link> now.</span>
+                {/* <button className="loginButton googleLogIn" >Login with Google</button> */}
+                </div>
+                </form>
             </div>
-        </div>
     )
-}   
+}  

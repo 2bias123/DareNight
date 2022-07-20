@@ -53,8 +53,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    color:#c4c4c4
-
+    color:#c4c4c4;
 }
 
 .questionDificulty{
@@ -107,4 +106,17 @@ img {
   }
   .logIn div {
     margin-top: 7px;
+  }
+
+  .funtext{
+    color: #c4c4c4;
+  }
+
+  .siteheader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: yellow; */
+    flex-direction: column;
+    flex-grow: 0;
   }

@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
 import React, { useEffect, useState } from "react"
 import { Link, Route, BrowserRouter as Router, useNavigate } from "react-router-dom"
 import {auth} from "./firebase.js"
+import Header from "./Header.js"
   
 export default function Register(){
 
@@ -25,24 +26,21 @@ export default function Register(){
 
     const auth = getAuth()
     const registerUsr = ()=>{
-        // e.preventDefault()
-        // if(passwordValidate()){
+        if(passwordValidate()){
             createUserWithEmailAndPassword(auth,email,confirmPassword)
-            // .then((userCredential)=>{
-            //     const user = userCredential.user
-            //     console.log(userCredential)
-            // })
-            // .catch(err => setError(err.message))
-        // }
-        // setEmail('')
-        // setPassword('')
-        // setConfirmedPassword('')
+            .then((userCredential)=>{
+                const user = userCredential.user
+                console.log(userCredential)
+            })
+            .catch(err => setError(err.message))
+        }
+        setEmail('')
+        setPassword('')
+        setConfirmedPassword('')
     }
     return(
         <div className="logIn"> 
-        <Link to={"/"}>
-        <button className="header">DARE NIGHT</button>
-        </Link>
+        <Header/>
             <form onSubmit={()=>registerUsr()}>
             <div className="loginBox">
                 <input 
@@ -67,7 +65,7 @@ export default function Register(){
                 placeholder='Confirm Password'/>
                 
                 <button className="loginButton">Register</button>
-                <span>Already have an account? <Link to="/login">Sign in</Link></span>
+                <span className="funtext">Already have an account? <Link to="/login">Sign in</Link></span>
             </div>
             </form>
         </div>

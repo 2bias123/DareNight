@@ -2,8 +2,9 @@ import React, { useState, useEffect} from "react"
 import Buttons from "./Buttons";
 import { questionsDatabase } from "./Databases/questionsDatabase"
 import {db} from "./firebase";
-import { doc, updateDoc, onSnapshot} from "firebase/firestore"
+import { doc, updateDoc, onSnapshot, getDoc} from "firebase/firestore"
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
    
 export default function Questions({Data,UserName}){
@@ -39,11 +40,12 @@ export default function Questions({Data,UserName}){
         setScore(doc.data().score)
     })
 
+
+ 
+
     return(
         <div className='DareNight'>
-            <Link to={"/"}>
-                <button className="header">DARE NIGHT</button>
-            </Link>
+            <Header/>
             <h2 className='scoreCounter'>{score}</h2>
             <br></br>
             <br></br>

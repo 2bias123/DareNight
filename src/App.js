@@ -16,13 +16,14 @@ import {
 } from "react-router-dom";
 import AdminPage from './Components/adminPage';
 import HomeScreen from './Components/homescreen';
+import Header from './Components/Header';
   
 
 
 
 function App() {
     return (
-      <div className="App " id='main'>
+      <div className="App" id='main'>
         {/* This defines what component to display when the diffrent links are clicked */}
         <Router>
           <Routes>
@@ -32,6 +33,7 @@ function App() {
             <Route path='/register' element={<Register/>}/>
             <Route path='/questionsPage' element={<Questions Data={Qst('Questions')}/>}/>
             <Route path='/insertquestion' element={<InsertQuestion/>}/>
+            <Route path='/headertest' element={<Header/>}/>
           </Routes>
         </Router>
       </div>
