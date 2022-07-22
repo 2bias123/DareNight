@@ -119,4 +119,5 @@ img {
     /* background-color: yellow; */
     flex-direction: column;
     flex-grow: 0;
+    color: #c4c4c4;
   }

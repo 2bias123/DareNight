@@ -17,6 +17,7 @@ import {
 import AdminPage from './Components/adminPage';
 import HomeScreen from './Components/homescreen';
 import Header from './Components/Header';
+import CHoseTeam from './Components/choseTeams';
   
 
 
@@ -33,7 +34,7 @@ function App() {
             <Route path='/register' element={<Register/>}/>
             <Route path='/questionsPage' element={<Questions Data={Qst('Questions')}/>}/>
             <Route path='/insertquestion' element={<InsertQuestion/>}/>
-            <Route path='/headertest' element={<Header/>}/>
+            <Route path='/ChoseTeam' element={<CHoseTeam Data={Qst("Teams")}/>}/>
           </Routes>
         </Router>
       </div>

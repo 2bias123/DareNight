@@ -29,19 +29,20 @@ export default function Register(){
         if(passwordValidate()){
             createUserWithEmailAndPassword(auth,email,confirmPassword)
             .then((userCredential)=>{
-                const user = userCredential.user
+                const user = userCredential.user.email
                 console.log(userCredential)
             })
-            .catch(err => setError(err.message))
+            // .catch(err => setError(err.message))
         }
         setEmail('')
         setPassword('')
         setConfirmedPassword('')
     }
+
     return(
         <div className="logIn"> 
         <Header/>
-            <form onSubmit={()=>registerUsr()}>
+            {/* <form onSubmit={()=>registerUsr()}> */}
             <div className="loginBox">
                 <input 
                 type={'text'} 
@@ -64,10 +65,10 @@ export default function Register(){
                 onChange={(e)=>{setConfirmedPassword(e.target.value)}}
                 placeholder='Confirm Password'/>
                 
-                <button className="loginButton">Register</button>
+                <button className="loginButton" onClick={registerUsr}>Register</button>
                 <span className="funtext">Already have an account? <Link to="/login">Sign in</Link></span>
             </div>
-            </form>
+            {/* </form> */}
         </div>
     )
 }   

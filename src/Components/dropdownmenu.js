@@ -4,17 +4,37 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { IconButton } from '@mui/material';
 import DehazeIcon from '@mui/icons-material/Dehaze';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 
 export default function DropDownMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const auth = getAuth()
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logOut = () =>{
+    signOut(auth).then(()=>{console.log("Succsessfully logged out")}).catch((erroe)=>{console.log("Somthing wrong happend")})
+    setAnchorEl(null)
+  }
+
+  const getUser = () => {
+    onAuthStateChanged(auth,(user)=>{
+      if(user){
+        console.log(user.email,"is logged in")
+      } else {console.log("there is not anyone signed in right now")}
+    })
+    setAnchorEl(null)
+  }
 
   return (
     <div>
@@ -25,7 +45,7 @@ export default function DropDownMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <DehazeIcon color ="red"/>
+        <DehazeIcon/>
       </IconButton>
       <Menu
         id="demo-positioned-menu"
@@ -43,8 +63,8 @@ export default function DropDownMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={getUser}>My account</MenuItem>
+        <MenuItem onClick={logOut}>Logout</MenuItem>
       </Menu>
     </div>
   );
