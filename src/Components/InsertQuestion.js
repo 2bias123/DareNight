@@ -21,7 +21,7 @@ export default function InsertQuestion(){
             difficulty : Difficulty,
             question_text : QstTxt,
             points : QstPoints,
-            completed : true
+            completedBy : []
         })
         document.getElementById('id').value = ''
         document.getElementById('dificulty').value = ''

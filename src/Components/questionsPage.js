@@ -2,9 +2,10 @@ import React, { useState, useEffect} from "react"
 import Buttons from "./Buttons";
 import { questionsDatabase } from "./Databases/questionsDatabase"
 import {db} from "./firebase";
-import { doc, updateDoc, onSnapshot, getDoc} from "firebase/firestore"
+import { doc, updateDoc, onSnapshot, getDoc, arrayUnion, arrayRemove} from "firebase/firestore"
 import { Link } from "react-router-dom";
 import Header from "./Header";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
    
 export default function Questions({Data,UserName}){
@@ -12,6 +13,19 @@ export default function Questions({Data,UserName}){
     const[questions,setQuestions] = useState(Data)
     
     const[score,setScore] = useState(0)
+
+    const[currentTeam,setCurrentTeam] = useState("")
+
+    const auth = getAuth()
+
+    onAuthStateChanged(auth,(user)=>{
+        if(user){
+            onSnapshot(doc(db,"Users",user.uid),(doc)=>{
+                if(doc.data().team !== null){
+                    setCurrentTeam(doc.data().team)
+                }
+            })
+    }})
 
     //Makes a set with the diffrent difficulties
     const diff = [...new Set(Data.map((val)=>val.difficulty))]
@@ -27,22 +41,22 @@ export default function Questions({Data,UserName}){
     //When a box is checked or unchecked it changes the status of the question in the databse aswell
     //It also updates the scorecounter
     const handleOnChange = (id,val,points) => {
-        updateDoc(doc(db,"Questions",id),{completed : !val})
-        if(!val){
-          updateDoc(doc(db,"Users","user1"),{score : score+points})
+        if(!val.includes(currentTeam)){
+            updateDoc(doc(db,"Questions",id),{completedBy : arrayUnion(currentTeam)})
+            updateDoc(doc(db,"Teams",currentTeam),{score : score+points})
+        } else if(val.includes(currentTeam)){
+            updateDoc(doc(db,"Questions",id),{completedBy : arrayRemove(currentTeam)})
+            updateDoc(doc(db,"Teams",currentTeam),{score : score-points})
         }
-        if(val){
-            updateDoc(doc(db,"Users","user1"),{score : score-points})
-          }
     }
 
-    onSnapshot(doc(db,"Users","user1"),(doc)=>{
+    if(currentTeam !== ""){
+    onSnapshot(doc(db,"Teams",currentTeam),(doc)=>{
         setScore(doc.data().score)
     })
+}
 
-
- 
-
+    if(currentTeam !== ""){
     return(
         <div className='DareNight'>
             <Header/>
@@ -60,14 +74,18 @@ export default function Questions({Data,UserName}){
                         <h3 className="mainQuestion">{value.question_text}</h3>
                         <h3 className="points">{value.points}</h3>
                         <input 
-                            checked={value.completed}
-                            onChange={() => handleOnChange(value.id,value.completed,value.points)} 
+                            checked={value.completedBy.includes(currentTeam)}
+                            onChange={() => handleOnChange(value.id,value.completedBy,value.points)} 
                             className= "checkbox" type='checkbox'/>
                     </div>
                 </div>
             ))
             }
             </div>
+        </div>
+    )} else return(
+        <div className='DareNight'>
+            <h2>Du må være en del av et lag for å kunne se spørsmålene. Bli med i et lag <Link to={'/ChoseTeam'}>her</Link></h2>
         </div>
     )
 }   

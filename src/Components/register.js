@@ -1,8 +1,9 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { setDoc, doc, getDoc } from "firebase/firestore"
 import React, { useEffect, useState } from "react"
 import { Link, Route, BrowserRouter as Router, useNavigate } from "react-router-dom"
-import {auth} from "./firebase.js"
 import Header from "./Header.js"
+import { db } from "./firebase.js"
   
 export default function Register(){
 
@@ -11,26 +12,47 @@ export default function Register(){
     const[confirmPassword,setConfirmedPassword] = useState('')
     const [error, setError] = useState('')
 
+    const navigate = useNavigate()
 
     //This method checks if the two password is not empty and that they match
-    const passwordValidate = () =>{
-        let isValid = true
-        if (password !== '' && confirmPassword !== ''){
-            if(password !== confirmPassword){
-                isValid = false
-                setError('Passwords does not match')
-            }
-        }
-        return isValid
+    async function credentialsValidate(){
+        const userInfo = doc(db,"Users",email)
+        const userSnap = await getDoc(userInfo)
+        
+        if(userSnap.exists()){
+            setError("This email address is alredy in use")
+            return false
+        }else return true
+    
+    
     }
 
+    const ValidateEmail=(mail) =>{
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+        {
+            return (true)
+        }
+        setError("You have entered an invalid email address!")
+        return (false)
+    }
+
+
     const auth = getAuth()
-    const registerUsr = ()=>{
-        if(passwordValidate()){
+    async function registerUsr(){
+        if(credentialsValidate()){
             createUserWithEmailAndPassword(auth,email,confirmPassword)
             .then((userCredential)=>{
-                const user = userCredential.user.email
-                console.log(userCredential)
+                
+                const user = userCredential.user
+
+                setDoc(doc(db,"Users",user.email),{
+                    Score : 0,
+                    uid : user.uid,
+                    team : null,
+                    mail : user.email
+                })
+
+                navigate('/ChoseTeam')
             })
             // .catch(err => setError(err.message))
         }

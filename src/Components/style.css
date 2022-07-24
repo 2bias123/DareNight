@@ -17,6 +17,12 @@
     font-weight: normal;
 }
 
+.App h2{
+  color: #ff0505;
+  font-family: 'BioRhyne';   
+  font-weight: normal;
+}
+
 .DareNight{
     width: 90%;
     font-family: 'BioRhyne';   
@@ -49,11 +55,16 @@
 }
 
 .questionInfo{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    color:#c4c4c4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color:#c4c4c4;
+}
+
+.questionInfo button{
+  color:#ff0505;
+  background-color: #c4c4c4;
 }
 
 .questionDificulty{

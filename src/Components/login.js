@@ -10,10 +10,10 @@ export default function LogIn(){
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
 
-
     const navigate = useNavigate()
 
     const auth = getAuth()
+
     const login = () => {
         signInWithEmailAndPassword(auth,email,password).then((userCredential) => {
             const user = userCredential.user
@@ -23,18 +23,8 @@ export default function LogIn(){
           });
           setEmail("")
           setPassword("")
+        navigate('/ChoseTeam')
     }
-
-    // async function login() {
-        // const userInfo = doc(db,"Users",email)
-        // const docSnap = await getDoc(userInfo)
-        // if(docSnap.exists()){
-        //     console.log(docSnap.data())
-        //     navigate("/questionspage")
-        // }else{
-        //     console.log("denne finnes ikke")
-        // }
-    // }
 
     return(
         <div className="logIn">
@@ -56,7 +46,7 @@ export default function LogIn(){
                     placeholder='Password'/>
 
                     <button className="loginButton" onClick={login}>Login</button>
-                    <span>Don't have an account? <Link to={'/register'}>Register</Link> now.</span>
+                    <span className="funtext">Don't have an account? <Link to={'/register'}>Register</Link> now.</span>
                     {/* <button className="loginButton googleLogIn" >Login with Google</button> */}
                     </div>
                 {/* </form> */}
