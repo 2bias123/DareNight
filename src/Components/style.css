@@ -132,3 +132,17 @@ img {
     flex-grow: 0;
     color: #c4c4c4;
   }
+
+  .error {
+    color: red;
+    font-size: 20px;
+  }
+
+  .loginBox input{
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: none;
+    color: #ff0505;
+    background-color:#c4c4c4;
+  }

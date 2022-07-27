@@ -9,47 +9,60 @@ export default function LogIn(){
 
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
+    const [errorMessages, setErrorMessages] = useState({});
 
     const navigate = useNavigate()
 
     const auth = getAuth()
 
-    const login = () => {
+    // Generate JSX code for error message
+    const renderErrorMessage = (name) =>
+    name === errorMessages.name && (
+        <div className="error">{errorMessages.message}</div>
+    );
+
+    const login = (event) => {
+        event.preventDefault()
         signInWithEmailAndPassword(auth,email,password).then((userCredential) => {
             const user = userCredential.user
             console.log("succsessfully logged in as",user.email)
+            navigate('/questionsPage')
         }).catch((error) => {
-            console.log("something went wrong")
+            setErrorMessages({name:"login", message: "Invalid username or password"})
           });
           setEmail("")
           setPassword("")
-        navigate('/ChoseTeam')
     }
 
     return(
         <div className="logIn">
             <Header/>
-                {/* <form onSubmit={()=>login()}> */}
+                <form onSubmit={login}>
                     <div className="loginBox">
                     <input 
                     type={'text'} 
                     className='loginTextBox' 
                     value={email} 
                     onChange={(e)=>setEmail(e.target.value)} 
-                    placeholder='Email Address'/>
+                    placeholder='Email Address'
+                    required
+                    />
 
                     <input 
                     type={'password'} 
                     className='loginTextBox' 
                     value={password} 
                     onChange={(e)=>setPassword(e.target.value)} 
-                    placeholder='Password'/>
+                    placeholder='Password'
+                    required
+                    />
 
-                    <button className="loginButton" onClick={login}>Login</button>
+                    {renderErrorMessage("login")}
+
+                    <input type={"submit"} value={"Log in"}></input>
                     <span className="funtext">Don't have an account? <Link to={'/register'}>Register</Link> now.</span>
-                    {/* <button className="loginButton googleLogIn" >Login with Google</button> */}
                     </div>
-                {/* </form> */}
+                </form>
             </div>
     )
 }  

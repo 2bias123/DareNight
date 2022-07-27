@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { IconButton } from '@mui/material';
 import DehazeIcon from '@mui/icons-material/Dehaze';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, reload, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 

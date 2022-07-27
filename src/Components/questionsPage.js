@@ -20,7 +20,7 @@ export default function Questions({Data,UserName}){
 
     onAuthStateChanged(auth,(user)=>{
         if(user){
-            onSnapshot(doc(db,"Users",user.uid),(doc)=>{
+            onSnapshot(doc(db,"Users",user.email),(doc)=>{
                 if(doc.data().team !== null){
                     setCurrentTeam(doc.data().team)
                 }
