@@ -63,7 +63,7 @@ export default function Register(){
     async function registerUsr(event){
         event.preventDefault()
         if(await credentialsValidate()){
-            createUserWithEmailAndPassword()
+            createUserWithEmailAndPassword(auth,email,confirmPassword)
             .then((userCredential)=>{
                 
                 const user = userCredential.user
@@ -76,6 +76,9 @@ export default function Register(){
                 })
 
                 navigate('/ChoseTeam')
+            })
+            .catch((error)=>{
+                alert("Could not register new user")
             })
             setEmail('')
             setPassword('')

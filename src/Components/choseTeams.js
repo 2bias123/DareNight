@@ -3,13 +3,15 @@ import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebas
 import { arrayUnion, doc, getDoc, updateDoc, setDoc, arrayRemove } from "firebase/firestore"
 import { db } from "./firebase"
 import { useState } from "react";
-import Popup from 'reactjs-popup';
+import { useNavigate } from "react-router-dom";
 
 export default function CHoseTeam({Data}){
 
     const auth = getAuth()
 
     const [user,setUser] = useState("")
+
+    const navigate = useNavigate()
 
     //Sets the user hook to the currently logged in user
     onAuthStateChanged(auth,(user)=>{
@@ -18,12 +20,11 @@ export default function CHoseTeam({Data}){
         }
     })
 
-    
     //Gets the teams doc and adds the if there is space
     async function canJoin(numberOfMemebers,teamName) {
 
         if(user === ""){
-            console.log("Du må være logget inn for å kunne bli med i et lag")
+            alert("You have to be logged in to join a team")
         }else{
         const teamInfo = doc(db,"Teams",teamName)
         const userInfo = doc(db,"Users",user)
@@ -35,12 +36,14 @@ export default function CHoseTeam({Data}){
             if(teamSnap.data().Members.length <= numberOfMemebers){
                 updateDoc(teamInfo,{Members : arrayUnion(user)})
                 updateDoc(userInfo,{team : teamName})
+                alert("Sucsessfully joined "+ teamName)
+                navigate('/questionsPage')
             }
         }else if(userSnap.data().team === teamName){
-            console.log("Du er allerede med i dette laget")
+            console.log("You're already a part of this team")
         }
         else if(userSnap.data().team !== null){
-            console.log("Du er allerede med i et annet lag")
+            alert("You're already a part of another team")
         }
         }
     }
@@ -48,7 +51,7 @@ export default function CHoseTeam({Data}){
     async function leaveTeam(teamName){
 
         if(user === ""){
-            console.log("Du må være logget inn for å kunne forlate et lag")
+            alert("You have to be logged in to leave a team")
         }else{
         const teamInfo = doc(db,"Teams",teamName)
         const userInfo = doc(db,"Users",user)
@@ -59,9 +62,9 @@ export default function CHoseTeam({Data}){
         if(userSnap.data().team === teamName){
             updateDoc(teamInfo,{Members : arrayRemove(user)})
             updateDoc(userInfo,{team : null})
-            console.log("du har nå fortlattt laget")
+            alert("You have now left the team")
         } else if(userSnap.data().team !== teamName){
-            console.log("Du kan ikke forlate et lag du ikke er en del av")
+            alert("You can not leave a team youare not a part of")
         }
     }
     }
