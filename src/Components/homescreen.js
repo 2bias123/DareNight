@@ -6,13 +6,14 @@ export default function HomeScreen(){
         <div className="DareNight">
         <h1>DARE NIGHT</h1>
         <DropDownMenu/>
+
         <Link to={'/questionsPage'}>
             <button className="underheader">questions</button>
         </Link>
-        <br/>
+        {/* <br/>
         <Link to={'AdminPage'}>
             <button className="underheader">adminpage</button>
-        </Link>
+        </Link> */}
         <br/>
         <Link to={'login'}>
             <button className="underheader">log in</button>

@@ -29,7 +29,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<HomeScreen/>}/>
-            <Route path='AdminPage' element={<AdminPage/>}/>
+            {/* <Route path='AdminPage' element={<AdminPage/>}/> */}
             <Route path='/login' element={<LogIn/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/questionsPage' element={<Questions Data={Qst('Questions')}/>}/>

@@ -21,7 +21,7 @@ export default function Register(){
         password2: "The passwords needs to be at least 6 characters long"
       };
 
-    // Generate JSX code for error message
+    // Creates the error message
     const renderErrorMessage = (name) =>
     name === errorMessages.name && (
         <div className="error">{errorMessages.message}</div>
@@ -63,7 +63,7 @@ export default function Register(){
     async function registerUsr(event){
         event.preventDefault()
         if(await credentialsValidate()){
-            createUserWithEmailAndPassword(auth,email,confirmPassword)
+            createUserWithEmailAndPassword()
             .then((userCredential)=>{
                 
                 const user = userCredential.user

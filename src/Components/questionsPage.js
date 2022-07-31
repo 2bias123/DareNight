@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react"
 import Buttons from "./Buttons";
-import { questionsDatabase } from "./Databases/questionsDatabase"
 import {db} from "./firebase";
 import { doc, updateDoc, onSnapshot, getDoc, arrayUnion, arrayRemove} from "firebase/firestore"
 import { Link } from "react-router-dom";

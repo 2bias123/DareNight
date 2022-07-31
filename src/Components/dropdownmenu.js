@@ -28,6 +28,7 @@ export default function DropDownMenu() {
   const logOut = () =>{
     signOut(auth).then(()=>{console.log("Succsessfully logged out")}).catch((erroe)=>{console.log("Somthing wrong happend")})
     setAnchorEl(null)
+    alert("Successfully logged out")
   }
 
   const getUser = () => {
